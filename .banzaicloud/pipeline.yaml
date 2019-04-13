@@ -4,4 +4,12 @@ cluster:
 pipeline:
   build_container:
     image: plugins/docker
-    repo: tarokkk/dotnet-helloworld-example.git
+    repo: tarokkk/dotnet-helloworld-example
+    tags: latest
+    secretFrom:
+      DOCKER_USERNAME:
+        name: docker
+        keyRef: username
+      DOCKER_PASSWORD:
+        name: docker
+        keyRef: password
