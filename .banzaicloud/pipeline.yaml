@@ -1,0 +1,7 @@
+cluster:
+  name: my-cluster
+
+pipeline:
+  build_container:
+    image: plugins/docker
+    repo: tarokkk/dotnet-helloworld-example.git
