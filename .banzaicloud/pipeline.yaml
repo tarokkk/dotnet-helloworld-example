@@ -13,3 +13,16 @@ pipeline:
       DOCKER_PASSWORD:
         name: docker
         keyRef: password
+
+  package_application:
+    image: lachlanevenson/k8s-helm:latest
+    commands:
+      - helm init -c
+      - helm package ./.banzaicloud/charts/helloworld-example
+  deploy_application:
+    image: banzaicloud/ci-pipeline-client:0.10
+    action: EnsureDeployment
+    deployment:
+      name: './helloworld-example-0.1.0.tgz'
+      wait: true
+      timeout: 900
